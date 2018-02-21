@@ -18,6 +18,7 @@ def get_shop_list_by_dishes(dishes, person_count, cook_book):
 def formated_list_item(list_item):
     return '{} {} {}'.format(list_item['ingridient_name'], list_item['quantity'], list_item['measure'])
 
+
 def go_over_list(list, callback):
     for list_item in list.values():
         callback(list_item)
