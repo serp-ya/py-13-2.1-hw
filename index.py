@@ -4,7 +4,7 @@ with open('recipes.txt', encoding='utf8') as recipes:
     cook_book = dict()
 
     for line in recipes:
-        recipe_name = line.strip()
+        recipe_name = line.strip().lower()
         cook_book[recipe_name] = list()
 
         ingridients_count = int(recipes.readline().strip())
@@ -12,7 +12,7 @@ with open('recipes.txt', encoding='utf8') as recipes:
         for i in range(ingridients_count):
             ingridient = recipes.readline().strip().split(' | ')
 
-            ingridient_name = ingridient[0]
+            ingridient_name = ingridient[0].lower()
             ingridient_quantity = int(ingridient[1])
             ingridient_measure = ingridient[2]
 
