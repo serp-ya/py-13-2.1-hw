@@ -19,8 +19,8 @@ def formated_list_item(list_item):
     return '{} {} {}'.format(list_item['ingridient_name'], list_item['quantity'], list_item['measure'])
 
 
-def go_over_list(list, callback):
-    for list_item in list.values():
+def go_over_list(items_dict, callback):
+    for list_item in items_dict.values():
         callback(list_item)
 
 
