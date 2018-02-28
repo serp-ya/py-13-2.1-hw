@@ -1,29 +1,36 @@
 from core import create_shop_list
 
-with open('recipes.txt', encoding='utf8') as recipes:
-    cook_book = dict()
 
-    for line in recipes:
-        recipe_name = line.strip().lower()
-        cook_book[recipe_name] = list()
+def get_products(filename):
+    with open(filename, encoding='utf8') as recipes:
+        cook_book = dict()
 
-        ingridients_count = int(recipes.readline().strip())
+        for line in recipes:
+            recipe_name = line.strip().lower()
+            cook_book[recipe_name] = list()
 
-        for i in range(ingridients_count):
-            ingridient = recipes.readline().strip().split(' | ')
+            ingridients_count = int(recipes.readline().strip())
 
-            ingridient_name = ingridient[0].lower()
-            ingridient_quantity = int(ingridient[1])
-            ingridient_measure = ingridient[2]
+            for i in range(ingridients_count):
+                ingridient = recipes.readline().strip().split(' | ')
 
-            ingridient = {
-                'ingridient_name': ingridient_name,
-                'quantity': ingridient_quantity,
-                'measure': ingridient_measure
-            }
+                ingridient_name = ingridient[0].lower()
+                ingridient_quantity = int(ingridient[1])
+                ingridient_measure = ingridient[2]
 
-            cook_book[recipe_name].append(ingridient)
+                ingridient = {
+                    'ingridient_name': ingridient_name,
+                    'quantity': ingridient_quantity,
+                    'measure': ingridient_measure
+                }
 
-        recipes.readline()
+                cook_book[recipe_name].append(ingridient)
 
-    create_shop_list(cook_book)
+            recipes.readline()
+
+    return cook_book
+
+
+if __name__ == '__main__':
+    products = get_products('recipes.txt')
+    create_shop_list(products)
