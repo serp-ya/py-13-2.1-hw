@@ -15,8 +15,8 @@ def get_shop_list_by_dishes(dishes, person_count, cook_book):
     return shop_list
 
 
-def formated_list_item(list_item):
-    return '{} {} {}'.format(list_item['ingridient_name'], list_item['quantity'], list_item['measure'])
+def formated_list_item(item):
+    return '{} {} {}'.format(item['ingridient_name'], item['quantity'], item['measure'])
 
 
 def go_over_list(items_dict, callback):
@@ -24,14 +24,13 @@ def go_over_list(items_dict, callback):
         callback(list_item)
 
 
-def print_shop_list(list_item):
-    print(formated_list_item(list_item))
+def print_shop_list(item):
+    print(formated_list_item(item))
 
 
-def write_products_order_list(list_item):
+def write_products_order_list(item):
     with open('products_order_list.txt', encoding='utf8', mode='a') as order_list:
-        order_list.write(formated_list_item(list_item))
-        order_list.write('\n')
+        order_list.write('{}\n'.format(formated_list_item(item)))
 
 
 def create_shop_list(cook_book):
@@ -43,7 +42,6 @@ def create_shop_list(cook_book):
     go_over_list(shop_list, print_shop_list)
 
     with open('products_order_list.txt', encoding='utf8', mode='w') as order_list:
-        order_list.write(str(datetime.now()))
-        order_list.write('\n')
+        order_list.write('{}\n'.format(datetime.now()))
 
     go_over_list(shop_list, write_products_order_list)
